@@ -1,0 +1,26 @@
+*.pyc
+ve_*
+*- copia*
+node_modules
+*node_modules
+bower_components
+*bower_components*
+~*
+xtest_
+#files and dir of text edit or IDE'S
+.idea
+/.idea
+.idea/*
+.idea/workspace.xml
+.swp
+.idea/**/workspace.xml
+.idea/**/tasks.xml
+.idea/dictionaries
+
+#dir an building
+dist
+dist/
+dist/*
+#ignorando app y config
+app/app.js
+app/config.js

@@ -1,0 +1,67 @@
+<div ng-cloak>
+    <md-content class="md-padding" layout-xs="column" layout="row">
+        <div flex-xs flex-gt-xs="100" layout="column">
+            <form name="dForm" role="form" ng-controller="SeccionSaveCtrl">
+                <md-card>
+                    <md-card-header>
+                        <md-card-header-text>
+                            <span class="md-headline">Nueva seccion </span>
+                            <span class="md-subhead">Formulario de seccion</span>
+                        </md-card-header-text>
+                    </md-card-header>
+                    <md-card-content>
+                        <div layout-gt-sm="row">
+                            <md-input-container class="md-block" flex-gt-sm>
+                                <label>Seccion </label>
+                                <input name="cargo" ng-model="seccion.seccion" required>
+                                <div ng-messages="dForm.seccion.$error">
+                                    <div ng-message="required">This is required.</div>
+                                </div>
+                            </md-input-container>
+
+                           <md-input-container class="md-block" flex-gt-sm>
+                                <label>Periodo</label>
+                                <md-select ng-model="seccion.periodo">
+                                    <md-option ng-repeat="option in listPeriodo" value="{{option.id}}">
+                                        {{option.periodo}}
+                                    </md-option>
+                                </md-select>
+                                </select>
+                            </md-input-container>
+
+                            <md-input-container class="md-block" flex-gt-sm>
+                                <label>Grado</label>
+                                <md-select ng-model="seccion.grado">
+                                    <md-option ng-repeat="option in listGrado" value="{{option.id}}">
+                                        {{option.grado}}
+                                    </md-option>
+                                </md-select>
+                                </select>
+                            </md-input-container>
+                            
+                            <md-input-container class="md-block" flex-gt-sm ng-if="seccion.id">
+                                <label> Estado </label>
+                                <md-switch ng-model="seccion.estado" aria-label="Estado">
+                                </md-switch>
+                            </md-input-container>
+                        </div>
+
+                    </md-card-content>
+                    <md-divider></md-divider>
+                    <md-card-actions layout="row" layout-xs="column" layout-align="start center">
+                        <md-card-icon-actions>
+                            <md-button class="md-icon-button" aria-label="toggle">
+                                <md-icon md-svg-icon="md-toggle-arrow"></md-icon>
+                            </md-button>
+                        </md-card-icon-actions>
+                        <md-button type="reset" ng-click="cancel()" class="md-raised">Cancel</md-button>
+                        <md-button type="submit" ng-click="save()" class="md-raised md-primary">
+                            <span ng-show="seccion.id == null">Create</span>
+                            <span ng-show="seccion.id">Update</span>
+                        </md-button>
+                    </md-card-actions>
+                </md-card>
+            </form>
+        </div>
+    </md-content>
+</div>

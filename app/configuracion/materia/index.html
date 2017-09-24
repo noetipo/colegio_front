@@ -1,0 +1,86 @@
+<div ng-cloak>
+    <md-content class="md-padding" layout-xs="column" layout="row">
+        <div flex-xs flex-gt-xs="100" layout="column">
+            <md-card ng-controller="MateriaCtrl">
+                <md-card-header>
+                    <md-card-header-text>
+                        <span class="md-headline">Materias</span>
+                        <span class="md-subhead">Reporte de materias</span>
+                    </md-card-header-text>
+                    <md-button class="md-icon-button" aria-label="Add" ui-sref="acuerdo.acuerdo.materiaNew" ng-if="isPos != 403">
+                        <md-tooltip md-autohide>Add</md-tooltip>
+                        <ng-md-icon icon="add" aria-label="Add"></ng-md-icon>
+                    </md-button>
+                    <div ng-show="lista.length!=0">
+                        <md-button class="md-icon-button" aria-label="Share" ng-click="toFind=1" ng-show="!toFind">
+                            <md-tooltip md-autohide>Buscar</md-tooltip>
+                            <ng-md-icon icon="filter_list" aria-label="title"></ng-md-icon>
+                        </md-button>
+                        <md-button class="md-icon-button" aria-label="Share" ng-click="toFind=0" ng-show="toFind">
+                            <md-tooltip md-autohide>cancelar</md-tooltip>
+                            <ng-md-icon icon="clear" aria-label="cancelar"></ng-md-icon>
+                        </md-button>
+                    </div>
+                </md-card-header>
+                <md-divider></md-divider>
+                <md-card-actions layout="row" layout-align="start center" ng-show="toFind==1">
+
+                    <md-card-icon-actions>
+                        <md-input-container class="md-block md-search">
+                            <input placeholder="Buscar" ng-model="query" ng-keyup="buscar()">
+                        </md-input-container>
+                        <md-button class="md-icon-button" aria-label="Share">
+                            <ng-md-icon icon="more_vert" aria-label="title"></ng-md-icon>
+                        </md-button>
+                    </md-card-icon-actions>
+                </md-card-actions>
+
+                <md-card-content>
+                    <md-progress-circular md-mode="indeterminate" ng-show="isLoading"></md-progress-circular>
+                    <table table-responsive class="table-pagination">
+                        <thead md-on-reorder="onReorder">
+                        <tr ng-if="lista.length!=0">
+                            <th>#</th>
+                            <th class="col-hidden" data-order="periodo">Materia</th>
+                            <th class="col-hidden" data-order="descripcion_cargo">Descripci&oacuten</th>
+                            <th class="col-hidden" data-order="estado">Estado</th>
+                            <!--<th colspan="2" class="align-options" ng-if="isUpd!=403 || isDel!=403">Acciones</th>-->
+                            <th class="col-hidden" data-order="">Opciones</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="d in lista">
+                            <td> {{ (options.page - 1) * options.page_size +$index +1 }} </td>
+                            <td> {{ d.materia}} </td>
+                            <td> {{ d.descripcion}} </td>
+                            <td>
+                                <ng-md-icon  size="24" icon="{{d.estado ? 'done': 'remove_circle'}}" style="{{d.estado ? 'fill: green' : 'fill: red'}}" aria-label="Edit"></ng-md-icon>
+                            </td>
+                            <td ng-if="isUpd!=403">
+                                <md-button class="md-icon-button md-td" aria-label="Edit" ui-sref="acuerdo.acuerdo.materiaEdit({id:d.id})">
+                                    <md-tooltip md-autohide>Edit {{ d.codename }}</md-tooltip>
+                                    <ng-md-icon  size="24" icon="edit" aria-label="Edit"></ng-md-icon>
+                                </md-button>
+                            </td>
+                            <td ng-if="isDel!=403">
+                                <md-button class="md-icon-button md-td" aria-label="delete" ng-click="delete(d)">
+                                    <md-tooltip md-autohide>Delete {{ d.codename }}</md-tooltip>
+                                    <ng-md-icon  size="24" icon="delete" aria-label="delete"></ng-md-icon>
+                                </md-button>
+                            </td>
+                        </tr>
+                        <tr ng-if="lista.length == 0">
+                            <td colspan="5" align="center"><h3>No se encontraron los datos relacionados</h3></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    </md-table-container>
+                    <md-table-pagination ng-if="lista.length>0">
+                        <app-pagination ng-if="options.pages>0" per="options.page_size" page="options.page" format="{{'jumping'}}" display="4" rango="options.range" accion="list(params)" pages="options.pages" query="query" fields="{{fields}}">
+                        </app-pagination>
+                    </md-table-pagination>
+                </md-card-content>
+            </md-card>
+        </div>
+    </md-content>
+</div>

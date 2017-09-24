@@ -1,0 +1,47 @@
+<div ng-cloak>
+    <md-content class="md-padding" layout-xs="column" layout="row">
+        <div flex-xs flex-gt-xs="100" layout="column">
+            <form name="dForm" role="form" ng-controller="PeriodoSaveCtrl">
+                <md-card>
+                    <md-card-header>
+                        <md-card-header-text>
+                            <span class="md-headline">Nuevo Periodo </span>
+                            <span class="md-subhead">Formulario de Periodo</span>
+                        </md-card-header-text>
+                    </md-card-header>
+                    <md-card-content>
+                        <div layout-gt-sm="row">
+                            <md-input-container class="md-block" flex-gt-sm>
+                                <label>Periodo </label>
+                                <input name="cargo" ng-model="periodo.periodo" required>
+                                <div ng-messages="dForm.periodo.$error">
+                                    <div ng-message="required">This is required.</div>
+                                </div>
+                            </md-input-container>
+                       
+                            <md-input-container class="md-block" flex-gt-sm ng-if="periodo.id">
+                                <label> Estado </label>
+                                <md-switch ng-model="periodo.estado" aria-label="Estado">
+                                </md-switch>
+                            </md-input-container>
+                        </div>
+
+                    </md-card-content>
+                    <md-divider></md-divider>
+                    <md-card-actions layout="row" layout-xs="column" layout-align="start center">
+                        <md-card-icon-actions>
+                            <md-button class="md-icon-button" aria-label="toggle">
+                                <md-icon md-svg-icon="md-toggle-arrow"></md-icon>
+                            </md-button>
+                        </md-card-icon-actions>
+                        <md-button type="reset" ng-click="cancel()" class="md-raised">Cancel</md-button>
+                        <md-button type="submit" ng-click="save()" class="md-raised md-primary">
+                            <span ng-show="periodo.id == null">Create</span>
+                            <span ng-show="periodo.id">Update</span>
+                        </md-button>
+                    </md-card-actions>
+                </md-card>
+            </form>
+        </div>
+    </md-content>
+</div>

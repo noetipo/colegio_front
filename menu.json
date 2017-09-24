@@ -1,0 +1,55 @@
+{
+
+    "menu": [
+
+        {
+            "title": "Dashboard",
+            "state": "acuerdo.dashboard",
+            "type": "link"
+        },
+
+
+
+
+        {
+            "title": "Configuración",
+            "type": "toggle",
+            "state": "acuerdo.acuerdo",
+            "menu_items": [
+
+                {
+                    "title": "Persona",
+                    "state": "acuerdo.acuerdo.persona",
+                    "type": "link"
+                },
+                {
+                    "title": "Periodo",
+                    "state": "acuerdo.acuerdo.periodo",
+                    "type": "link"
+                }
+                ,
+                {
+                    "title": "Materia",
+                    "state": "acuerdo.acuerdo.materia",
+                    "type": "link"
+                }
+                ,
+                {
+                    "title": "Seccion",
+                    "state": "acuerdo.acuerdo.seccion",
+                    "type": "link"
+                }
+                ,
+                {
+                    "title": "Matricula",
+                    "state": "acuerdo.acuerdo.matricula",
+                    "type": "link"
+                }
+
+
+
+        ]
+        }
+    ]
+
+}
